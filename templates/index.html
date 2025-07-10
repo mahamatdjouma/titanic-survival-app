@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Titanic Survival Predictor</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #2c3e50, #3498db);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+        }
+
+        form input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        form input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            margin-top: 15px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Titanic Survival Prediction</h2>
+        <form action="/predict" method="post">
+            <input type="number" name="Pclass" placeholder="Passenger Class (1, 2, 3)" required>
+            <input type="number" name="Sex" placeholder="Sex (0 = Female, 1 = Male)" required>
+            <input type="number" name="Age" placeholder="Age in Years" required step="any">
+            <input type="number" name="SibSp" placeholder="Number of Siblings/Spouses Aboard" required>
+            <input type="number" name="Parch" placeholder="Number of Parents/Children Aboard" required>
+            <input type="number" name="Fare" placeholder="Fare Paid" required step="any">
+            <input type="number" name="Embarked" placeholder="Embarked (0 = C, 1 = Q, 2 = S)" required>
+            <input type="submit" value="Predict">
+        </form>
+        {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
